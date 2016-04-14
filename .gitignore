@@ -2,3 +2,6 @@
 nbproject/private/private.xml
 /build/
 /dist/
+*.properties
+
+nbproject/private/config.properties
