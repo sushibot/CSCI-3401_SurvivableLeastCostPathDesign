@@ -68,7 +68,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return "Link{" + "A=" + A + ", B=" + B + ", cost=" + cost + '}';
+        return "Link{" + A.getName() + "<->" + B.getName() + ": " + cost + '}';
     }
     
     /**Returns a randomly generated cost from 0-100, including no link (NaN)
@@ -78,6 +78,7 @@ public class Link {
     public static double generateCost()
     {
         Random random = new Random();
+        return random.nextBoolean() ? Double.NaN:random.nextInt(101);
     }
     
 

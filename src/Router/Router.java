@@ -43,6 +43,12 @@ public class Router {
     public ArrayList<Link> getLinks() {
         return links;
     }
+
+    @Override
+    public String toString() {
+        return "{"+ name + " links=" + links + '}';
+    }
+    
     
     
 

@@ -1,5 +1,8 @@
 
 import DataImport.DataInput;
+import Router.Router;
+import Router.link.Link;
+import java.util.ArrayList;
 
 /**
  *
@@ -7,15 +10,17 @@ import DataImport.DataInput;
  */
 public class Runner {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try{
             if(args[0].toUpperCase().endsWith(".CSV"))
             {
-                DataInput.read(args[0]);
+                Router[] test = DataInput.read(args[0]);
+                for (Router test1 : test)
+                    System.out.println(test1.getLinks());
+                
             }
-        }catch(Exception e)
-        {
-            System.err.println(e.getMessage());
+        }catch(Error e){
+            System.err.println(e.toString());
         }
         finally{
             System.out.println("\n\nUsage:");
