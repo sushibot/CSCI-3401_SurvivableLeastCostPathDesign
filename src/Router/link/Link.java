@@ -71,14 +71,14 @@ public class Link {
         return "Link{" + A.getName() + "<->" + B.getName() + ": " + cost + '}';
     }
     
-    /**Returns a randomly generated cost from 0-100, including no link (NaN)
+    /**Returns a randomly generated cost from 1-100, including no link (NaN)
      * 
      * @return double; Generated Cost
      */
     public static double generateCost()
     {
         Random random = new Random();
-        return random.nextBoolean() ? Double.NaN:random.nextInt(101);
+        return random.nextBoolean() ? Double.NaN:(random.nextInt(100) +1);
     }
     
 
