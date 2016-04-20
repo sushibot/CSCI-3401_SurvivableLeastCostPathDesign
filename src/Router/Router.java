@@ -1,6 +1,7 @@
 package Router;
 
 import Router.link.Link;
+import dijkstraAlg.Dijkstra_Alg;
 import java.util.ArrayList;
 
 /**
@@ -11,6 +12,7 @@ public class Router {
     
     private ArrayList<Link> links = new ArrayList<Link>();
     protected String name;
+    protected Dijkstra_Alg linkTable;
     /**Creates a new router with the given name
      * 
      * @param name Name of Router
@@ -44,6 +46,12 @@ public class Router {
         return links;
     }
 
+    public Dijkstra_Alg getLinkTable() {
+        return linkTable;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "{"+ name + " links=" + links + '}';

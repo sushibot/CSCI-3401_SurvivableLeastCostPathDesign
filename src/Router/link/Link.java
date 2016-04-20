@@ -81,5 +81,17 @@ public class Link {
         return random.nextBoolean() ? Double.NaN:(random.nextInt(100) +1);
     }
     
+    /**Returns a randomly generated cost given the bound
+     * 
+     * @param bound
+     * @return double; Cost of the link within the bound
+     */
+    public static double generateCost(int bound)
+    {
+        Random random = new Random();
+        return random.nextInt(bound) +1;
+    }
+            
+    
 
 }
