@@ -7,7 +7,7 @@ import java.util.Random;
  *
  * @author Tyler_Atiburcio
  */
-public class Link {
+public class Link implements Comparable {
     private final Router A,B;
     private double cost;
     /**Link Between two routers
@@ -91,7 +91,16 @@ public class Link {
         Random random = new Random();
         return random.nextInt(bound) +1;
     }
-            
-    
 
+    @Override
+    public int compareTo(Object o) {
+        Link lk = (Link)o;
+        if(this.getCost() > lk.getCost())
+            return -1;
+        else if(this.getCost() < lk.getCost())
+            return 1;
+        else return 0;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ 
 }

@@ -10,7 +10,12 @@ public class Path {
 
     protected int[] path;
     protected Router[] routers;
-
+    
+    /**Creates a new Path "Route", which holds the next hops and their link cost
+     * 
+     * @param path
+     * @param routers 
+     */
     public Path(int[] path, Router[] routers) {
         this.path = path;
         this.routers = routers;
@@ -37,5 +42,19 @@ public class Path {
     {
         return this.routers;
     }
+
+    @Override
+    public String toString()
+    {
+        String str = "[";
+        for (Router r : routers) 
+            str += r.getName() + ", ";
+        str += "]\n[";
+        for (int i : path) 
+            str+=i +", ";
+        str+= "]";
+        return str;
+    }
+    
     
 }
