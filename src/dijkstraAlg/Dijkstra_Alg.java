@@ -44,7 +44,7 @@ public class Dijkstra_Alg {
             for (Router rm : doneList)
                 neighbors.remove(rm);
 
-            Object AlgItData[] = AlgIitration(nextHop, neighbors);
+            Object AlgItData[] = AlgIitration(nextHop, neighbors, dest);
             if(AlgItData[0] == nextHop && AlgItData[0] != dest)
             {
                 
@@ -100,7 +100,7 @@ public class Dijkstra_Alg {
                 
     }
     
-    private Object[] AlgIitration(Router startPoint, ArrayList<Router> neighbors)
+    private Object[] AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest)
     {
         Object[] data = new Object[2];
         Link tempLink = null;
@@ -111,6 +111,12 @@ public class Dijkstra_Alg {
                 if(neighbor.getLinks().get(i).getA().equals(neighbor.getLinks().get(i).getB())) continue;
                 if(neighbor.getLinks().get(i).getB().equals(startPoint))
                 {
+                    if(neighbor.getLinks().get(i).getA().equals(dest))
+                    {
+                        tempLink = neighbor.getLinks().get(i);
+                        linkCost = neighbor.getLinks().get(i).getCost();
+                        break;
+                    }
                     if(neighbor.getLinks().get(i).getCost() < linkCost)
                     {
                         tempLink = neighbor.getLinks().get(i);

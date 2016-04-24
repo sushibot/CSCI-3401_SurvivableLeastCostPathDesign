@@ -3,4 +3,4 @@ Router B,1,0,/,1,/,/
 Router C,1,/,0,1,1,/
 Router D,/,1,1,0,/,1
 Router E,/,/,1,/,0,1
-Router F,/,/,/,1,1,/
+Router F,/,/,/,1,1,0
