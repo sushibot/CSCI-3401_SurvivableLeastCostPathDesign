@@ -68,4 +68,24 @@ public class Path {
     }
     
     
+    public static int[][] calculateLinksUsed(Router[] routerList, Path path)
+    {
+        int[][] usedLinks = new int[routerList.length][routerList.length];
+        for (int i = 0; i < path.getRouterPath().length-1; i++) {
+            
+           int routerIndex = 0;
+           for(;routerIndex < routerList.length;routerIndex++)
+               if(path.getRouterPath()[i].equals(routerList[routerIndex]))
+                   break;
+           int linkIndex = 0;
+           for(;linkIndex < routerList[routerIndex].getLinks().size();linkIndex++)
+               if(routerList[routerIndex].getLinks().get(linkIndex).getB().equals(path.getRouterPath()[i + 1]))
+                   break;
+           usedLinks[routerIndex][linkIndex]++;
+        }
+       
+        
+        return usedLinks;
+    }
+    
 }

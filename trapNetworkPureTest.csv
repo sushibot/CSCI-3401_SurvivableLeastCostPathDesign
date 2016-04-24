@@ -1,0 +1,6 @@
+Router A,0,?,?,/,/,/
+Router B,?,0,/,?,/,/
+Router C,?,/,0,?,?,/
+Router D,/,?,?,0,/,?
+Router E,/,/,?,/,0,?
+Router F,/,/,/,?,?,0

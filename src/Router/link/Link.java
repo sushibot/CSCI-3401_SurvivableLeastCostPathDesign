@@ -71,14 +71,14 @@ public class Link implements Comparable {
         return "Link{" + A.getName() + "<->" + B.getName() + ": " + cost + '}';
     }
     
-    /**Returns a randomly generated cost from 1-100, including no link (NaN)
+    /**Returns a randomly generated cost from 1-100
      * 
      * @return double; Generated Cost
      */
     public static double generateCost()
     {
         Random random = new Random();
-        return random.nextBoolean() ? Double.NaN:(random.nextInt(100) +1);
+        return (random.nextInt(100) +1);
     }
     
     /**Returns a randomly generated cost given the bound

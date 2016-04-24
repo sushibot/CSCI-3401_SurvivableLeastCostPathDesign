@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public class Dijkstra_Alg {
     
     private ArrayList<Path> paths = new ArrayList<Path>();
-    private static int[][] usedLinks;
+    private int[][] usedLinks;
     private final Router router;
     private final Router[] routerList;
+    
+    private ArrayList<Link> usedLink = new ArrayList<Link>();
 
     
     public Dijkstra_Alg(Router router, Router[] routerList)
@@ -28,39 +30,56 @@ public class Dijkstra_Alg {
             throw new Error("Router is null!");
         Path[] route = new Path[2];
         int index = 0;
-        ArrayList<Router> queue = new ArrayList<Router>();
-        ArrayList<Router> doneList = new ArrayList<Router>();
-        for (Router router1 : routerList) {
-            queue.add(router1);
-        }
-        //queue.remove(router);
-        
-        ArrayList<Router> hops = new ArrayList<Router>();
-        ArrayList<Double> hopCost = new ArrayList<Double>();
-        Router nextHop = queue.get(queue.indexOf(router));
-        doneList.add(nextHop);
-        do {
-            ArrayList<Router> neighbors = nextHop.getNeighbors();
-            for (Router rm : doneList)
-                neighbors.remove(rm);
-
-            Object AlgItData[] = AlgIitration(nextHop, neighbors, dest);
-            if(AlgItData[0] == nextHop && AlgItData[0] != dest)
-            {
-                
+        while(index != 2){
+            ArrayList<Router> queue = new ArrayList<Router>();
+            ArrayList<Router> doneList = new ArrayList<Router>();
+            for (Router router1 : routerList) {
+                queue.add(router1);
             }
-                nextHop = (Router) AlgItData[0];
-                hops.add(nextHop);
-                hopCost.add((Double) AlgItData[1]);
-                doneList.add(nextHop);
-                queue.remove(nextHop);
-        } while (nextHop != dest && !queue.isEmpty());
+            
+            if(index != 0)
+            for (Router used : route[0].getRouterPath()) {
+                if(used != dest && used != router)
+                {
+                    queue.remove(used);
+                    doneList.add(used);
+                }
+            }
+            //queue.remove(router);
+
+            ArrayList<Router> hops = new ArrayList<Router>();
+            ArrayList<Double> hopCost = new ArrayList<Double>();
+            Router nextHop = queue.get(queue.indexOf(router));
+            hops.add(nextHop);
+            hopCost.add(0.0);
+            doneList.add(nextHop);
+            while (nextHop != dest && !queue.isEmpty()) {
+                ArrayList<Router> neighbors = nextHop.getNeighbors();
+                for (Router rm : doneList)
+                    neighbors.remove(rm);
+                Object AlgItData[] = AlgIitration(nextHop, neighbors, dest);
+                if(AlgItData[0] == nextHop && AlgItData[0] != dest)
+                {
+
+                }
+                    nextHop = (Router) AlgItData[0];
+                    hops.add(nextHop);
+                    hopCost.add((Double) AlgItData[1]);
+                    doneList.add(nextHop);
+                    queue.remove(nextHop);
+            }
+
+            route[index] = new Path(hopCost,hops);
+            addUsedLinks(Path.calculateLinksUsed(routerList,route[index++]));
+            getUsedLinks();
         
-        route[index++] = new Path(hopCost,hops);
+        }
         
         return route;
     }
     
+    //See AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest)
+    @Deprecated
     private Object[] AlgIitration(Router startPoint)
     {
         Object[] data = new Object[2];
@@ -103,11 +122,19 @@ public class Dijkstra_Alg {
     private Object[] AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest)
     {
         Object[] data = new Object[2];
-        Link tempLink = null;
+        Link tempLink = neighbors.get(0).getLinks().get(0);
         double linkCost = Double.MAX_VALUE;
         for (Router neighbor : neighbors) {
             
             for (int i = 0; i < neighbor.getLinks().size(); i++) {
+                /*for (int j = 0; j < usedLink.size(); j++) {
+                    if(neighbor.getLinks().get(i).equals(usedLink.get(j)))
+                    {
+                        tempLink = neighbor.getLinks().get(1);
+                        linkCost = neighbor.getLinks().get(1).getCost();
+                        break;
+                    }
+                } */
                 if(neighbor.getLinks().get(i).getA().equals(neighbor.getLinks().get(i).getB())) continue;
                 if(neighbor.getLinks().get(i).getB().equals(startPoint))
                 {
@@ -134,13 +161,35 @@ public class Dijkstra_Alg {
      * 
      * @param bruhhh Links used in the path
      */
-    public static void addUsedLinks(int[][] bruhhh)
+    public void addUsedLinks(int[][] bruhhh)
     {
+        if(usedLinks == null) usedLinks = new int[bruhhh.length][bruhhh[0].length];
         for (int i = 0; i < usedLinks.length; i++) {
             for (int j = 0; j < usedLinks[i].length; j++) {
                 usedLinks[i][j] += bruhhh[i][j];
             }
         }
+    }
+    
+    public void printUsedLinks()
+    {
+        for (int i = 0; i < usedLinks.length; i++) {
+            System.out.print("{");
+            for (int j = 0; j < usedLinks[i].length; j++) {
+                System.out.print(" " + usedLinks[i][j] + " ");
+            }
+            System.out.print("}\n");
+        }
+    }
+    
+    public ArrayList<Link> getUsedLinks()
+    {
+        for (int i = 0; i < usedLinks.length; i++) {
+            for (int j = 0; j < usedLinks[i].length; j++) {
+                if(usedLinks[i][j] != 0) usedLink.add(routerList[i].getLinks().get(j));
+            }
+        }
+        return usedLink;
     }
     
     
