@@ -1,6 +1,7 @@
 package dijkstraAlg;
 
 import Router.Router;
+import java.util.ArrayList;
 
 /**
  *
@@ -8,17 +9,27 @@ import Router.Router;
  */
 public class Path {
 
-    protected int[] path;
+    protected double[] costHop;
     protected Router[] routers;
     
     /**Creates a new Path "Route", which holds the next hops and their link cost
      * 
-     * @param path
+     * @param costHop
      * @param routers 
      */
-    public Path(int[] path, Router[] routers) {
-        this.path = path;
+    public Path(double[] costHop, Router[] routers) {
+        this.costHop = costHop;
         this.routers = routers;
+    }
+    
+    public Path(ArrayList<Double> costHop, ArrayList<Router> path)
+    {
+        this.costHop = new double[costHop.size()];
+        this.routers = new Router[path.size()];
+        for (int i = 0; i < this.routers.length; i++) {
+            this.costHop[i] = costHop.get(i);
+            this.routers[i] = path.get(i);
+        }
     }
     
     /**Returns the total cost of the path to source to destination
@@ -28,8 +39,8 @@ public class Path {
     public double getTotalCost()
     {
         int cost = 0;
-        for (int i = 0; i < path.length; i++) {
-            cost += path[i];
+        for (int i = 0; i < costHop.length; i++) {
+            cost += costHop[i];
         }
         return cost;
     }
@@ -50,7 +61,7 @@ public class Path {
         for (Router r : routers) 
             str += r.getName() + ", ";
         str += "]\n[";
-        for (int i : path) 
+        for (double i : costHop) 
             str+=i +", ";
         str+= "]";
         return str;

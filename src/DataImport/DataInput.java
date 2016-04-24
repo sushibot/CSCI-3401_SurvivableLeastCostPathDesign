@@ -32,7 +32,7 @@ public class DataInput {
             for (int j = 1; j < routerData.length; j++) {
                 double cost = 0;
                 if(routerData[j].equals("/"))
-                    cost = Double.NaN;
+                    cost = Double.POSITIVE_INFINITY;
                 else if(routerData[j].matches("/[0-9]+"))
                     cost = Link.generateCost(Integer.parseInt(routerData[j].split("?")[1]));
                 else if(routerData[j].equals("?"))
