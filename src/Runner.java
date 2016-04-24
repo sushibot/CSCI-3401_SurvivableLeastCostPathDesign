@@ -19,6 +19,8 @@ public class Runner {
                 System.out.println(Double.POSITIVE_INFINITY);
                 Router[] routerList = DataInput.read(args[0]);
                 //System.out.println(routerList[0].getLinks());
+                System.out.println(routerList[0].getLinks());
+
                 System.out.println("src " + routerList[0].getName());
                 System.out.println("dest " + routerList[routerList.length-1].getName());
                 Dijkstra_Alg test1 = new Dijkstra_Alg(routerList[0],routerList);

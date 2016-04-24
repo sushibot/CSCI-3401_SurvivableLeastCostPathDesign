@@ -58,7 +58,6 @@ public class Dijkstra_Alg {
                 for (Router rm : doneList)
                     neighbors.remove(rm);
                 Object AlgItData[] = AlgIitration(nextHop, neighbors, dest);
-                
                     nextHop = (Router) AlgItData[0];
                     hops.add(nextHop);
                     hopCost.add((Double) AlgItData[1]);
