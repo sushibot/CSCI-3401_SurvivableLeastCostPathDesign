@@ -40,6 +40,12 @@ public class Runner {
                     }
                     System.out.println("\n\n\n");
                 }
+
+                Path[] testPath = routerList[0].getLinkTable().runAlg(routerList[routerList.length-1]);
+                System.out.println(testPath[0]);
+                //test1.printUsedLinks();
+                System.out.println(testPath[1]);
+                routerList[0].getLinkTable().printUsedLinks();
                 
             }
         }catch(Error e){
