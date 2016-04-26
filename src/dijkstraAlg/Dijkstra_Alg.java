@@ -13,18 +13,24 @@ public class Dijkstra_Alg {
     private ArrayList<Path> paths = new ArrayList<Path>();
     private int[][] usedLinks;
     private final Router router;
-    private final Router[] routerList;
+    private static final ArrayList<Router> routerList = new ArrayList<Router>();
     
     private ArrayList<Link> usedLink = new ArrayList<Link>();
 
-    
+    @Deprecated
     public Dijkstra_Alg(Router router, Router[] routerList)
     {
         this.router = router;
-        this.routerList = routerList;
+        //this.routerList = routerList;
     }
     
-    public Path[] runAlg(Router dest) throws Exception
+    public Dijkstra_Alg(Router router)
+    {
+        this.router = router;
+        routerList.add(this.router);
+    }
+    
+    public Path[] runAlg(Router dest) throws Error
     {
         if(dest == null)
             throw new Error("Router is null!");
@@ -57,7 +63,15 @@ public class Dijkstra_Alg {
                 ArrayList<Router> neighbors = nextHop.getNeighbors();
                 for (Router rm : doneList)
                     neighbors.remove(rm);
-                Object AlgItData[] = AlgIitration(nextHop, neighbors, dest);
+                
+                Object AlgItData[] = null;
+                try{
+                AlgItData = AlgIitration(nextHop, neighbors, dest);
+                }catch(NoRouteToDestination e)
+                {
+                    System.err.println(e.getMessage());
+                    return route;
+                }
                     nextHop = (Router) AlgItData[0];
                     hops.add(nextHop);
                     hopCost.add((Double) AlgItData[1]);
@@ -183,7 +197,7 @@ public class Dijkstra_Alg {
     {
         for (int i = 0; i < usedLinks.length; i++) {
             for (int j = 0; j < usedLinks[i].length; j++) {
-                if(usedLinks[i][j] != 0) usedLink.add(routerList[i].getLinks().get(j));
+                if(usedLinks[i][j] != 0) usedLink.add(routerList.get(i).getLinks().get(j));
             }
         }
         return usedLink;
