@@ -11,6 +11,8 @@ public class Path {
 
     protected double[] costHop;
     protected Router[] routers;
+    private final Router SOURCE;
+    private final Router DESTINATION;
     
     /**Creates a new Path "Route", which holds the next hops and their link cost
      * 
@@ -20,6 +22,8 @@ public class Path {
     public Path(double[] costHop, Router[] routers) {
         this.costHop = costHop;
         this.routers = routers;
+        this.SOURCE = this.routers[0];
+        this.DESTINATION = this.routers[this.routers.length-1];
     }
     
     public Path(ArrayList<Double> costHop, ArrayList<Router> path)
@@ -30,6 +34,9 @@ public class Path {
             this.costHop[i] = costHop.get(i);
             this.routers[i] = path.get(i);
         }
+        
+        this.SOURCE = this.routers[0];
+        this.DESTINATION = this.routers[this.routers.length-1];
     }
     
     /**Returns the total cost of the path to source to destination
@@ -57,7 +64,7 @@ public class Path {
     @Override
     public String toString()
     {
-        String str = "[";
+        String str = this.SOURCE.getName() + "<->"+ this.DESTINATION.getName() + "\n[";
         for (Router r : routers) 
             str += r.getName() + ", ";
         str += "]\n[";
@@ -68,24 +75,34 @@ public class Path {
     }
     
     
-    public static int[][] calculateLinksUsed(Router[] routerList, Path path)
+    
+    
+    public static int[][] calculateLinksUsed(ArrayList<Router> routerList, Path path)
     {
-        int[][] usedLinks = new int[routerList.length][routerList.length];
+        int[][] usedLinks = new int[routerList.size()][routerList.size()];
         for (int i = 0; i < path.getRouterPath().length-1; i++) {
             
            int routerIndex = 0;
-           for(;routerIndex < routerList.length;routerIndex++)
-               if(path.getRouterPath()[i].equals(routerList[routerIndex]))
+           for(;routerIndex < routerList.size();routerIndex++)
+               if(path.getRouterPath()[i].equals(routerList.get(routerIndex)))
                    break;
            int linkIndex = 0;
-           for(;linkIndex < routerList[routerIndex].getLinks().size();linkIndex++)
-               if(routerList[routerIndex].getLinks().get(linkIndex).getB().equals(path.getRouterPath()[i + 1]))
+           for(;linkIndex < routerList.get(routerIndex).getLinks().size();linkIndex++)
+               if(routerList.get(routerIndex).getLinks().get(linkIndex).getB().equals(path.getRouterPath()[i + 1]))
                    break;
            usedLinks[routerIndex][linkIndex]++;
         }
        
         
         return usedLinks;
+    }
+
+    public Router getSOURCE() {
+        return SOURCE;
+    }
+
+    public Router getDESTINATION() {
+        return DESTINATION;
     }
     
 }

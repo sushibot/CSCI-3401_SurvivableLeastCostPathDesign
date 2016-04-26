@@ -22,6 +22,7 @@ public class Router {
     {
         this.name = name;
         this.ID = new java.util.Random().nextInt(Integer.MAX_VALUE);
+        this.linkTable = new Dijkstra_Alg(this);
     }
     
     /**Returns the name of the router
