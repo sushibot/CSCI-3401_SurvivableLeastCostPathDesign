@@ -61,6 +61,7 @@ public class Router {
     public Dijkstra_Alg getLinkTable() {
         return linkTable;
     }
+    
 
     @Override
     public int hashCode() {
@@ -75,11 +76,13 @@ public class Router {
     }
  
     
-    
-    
     @Override
     public String toString() {
         return "{"+ name + " links=" + links + '}';
+    }
+
+    public void setLinks(ArrayList<Link> links) {
+        this.links = links;
     }
     
     

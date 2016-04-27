@@ -3,6 +3,7 @@ import DataImport.DataInput;
 import Router.Router;
 import Router.link.Link;
 import dijkstraAlg.Dijkstra_Alg;
+import dijkstraAlg.NoRouteToDestination;
 import dijkstraAlg.Path;
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class Runner {
         try{
             if(args[0].toUpperCase().endsWith(".CSV"))
             {
+                long startTime = System.currentTimeMillis();
                 //System.out.println(Double.POSITIVE_INFINITY);
                 Router[] routerList = DataInput.read(args[0]);
                 //System.out.println(routerList[0].getLinks());
@@ -41,12 +43,14 @@ public class Runner {
                     System.out.println("\n\n\n");
                 }
 
-                Path[] testPath = routerList[0].getLinkTable().runAlg(routerList[routerList.length-1]);
-                System.out.println(testPath[0]);
+                //Path[] testPath = routerList[0].getLinkTable().runAlg(routerList[routerList.length-1]);
+                //System.out.println(testPath[0]);
                 //test1.printUsedLinks();
-                System.out.println(testPath[1]);
+                //System.out.println(testPath[1]);
                 routerList[0].getLinkTable().printUsedLinks();
                 
+                System.out.println("\n\n\nTimeTook(ms): "+( System.currentTimeMillis()-startTime));
+                System.out.println("Amount of broken routes: " + NoRouteToDestination.COUNT);
             }
         }catch(Error e){
             System.err.println(e.toString());

@@ -35,6 +35,21 @@ public class Dijkstra_Alg {
         if(dest == null)
             throw new Error("Router is null!");
         Path[] route = new Path[2];
+        boolean isBroken = false;
+        /*
+        ArrayList<Link> pathLinks = new ArrayList<Link>();
+        ArrayList<Double> pathCosts = new ArrayList<Double>();
+        */
+        /*
+        ArrayList<ArrayList<Link>> oldLink = new ArrayList<ArrayList<Link>>();
+        for (Router r : routerList) {
+            ArrayList<Link> copiedLinks = new ArrayList<Link>();
+            for (Link links : r.getLinks()) {
+                copiedLinks.add(new Link(links.getA(), links.getB(), links.getCost()));
+            }
+            oldLink.add(copiedLinks);
+        }
+        */
         int index = 0;
         while(index != 2){
             ArrayList<Router> queue = new ArrayList<Router>();
@@ -70,23 +85,57 @@ public class Dijkstra_Alg {
                 }catch(NoRouteToDestination e)
                 {
                     System.err.println(e.getMessage());
-                    return route;
+                    //return route;
+                    nextHop = router;
+                    for (Router router1 : routerList)
+                        queue.add(router1);
+                    index = 0;
+                    route = new Path[2];
+                    isBroken = true;
+                    break;  
                 }
                     nextHop = (Router) AlgItData[0];
                     hops.add(nextHop);
                     hopCost.add((Double) AlgItData[1]);
                     doneList.add(nextHop);
                     queue.remove(nextHop);
+                    /*
+                    pathLinks.add((Link) AlgItData[2]);
+                    pathCosts.add((Double) AlgItData[1]);
+                    */
+                    
             }
 
             route[index] = new Path(hopCost,hops);
+            
+            
             addUsedLinks(Path.calculateLinksUsed(routerList,route[index++]));
             getUsedLinks();
         
         }
-        
+        /*
+        for (Link linker : this.usedLink) {
+            Router origin = routerList.get(routerList.indexOf(linker.getA()));
+            int oldLinkLoc = origin.getLinks().indexOf(linker);
+            origin.getLinks().remove(oldLinkLoc);
+            origin.getLinks().add(oldLinkLoc, linker);
+        }
+        this.usedLink.clear();
+        */
+        /*
+        for (int i = 0; i < oldLink.size(); i++)
+            routerList.get(i).setLinks(oldLink.get(i));
+        */
+        /*
+        for (int i = 0; i < pathLinks.size(); i++) {
+            int linkIndex = Link.getALLLINKS().indexOf(pathLinks.get(i));
+            Link.getALLLINKS().get(linkIndex).setCost(pathCosts.get(i));
+        }
+        */
+        if(isBroken) NoRouteToDestination.COUNT--;
         return route;
     }
+    
     
     //See AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest)
     @Deprecated
@@ -125,14 +174,25 @@ public class Dijkstra_Alg {
         }
             data[0] = minLink.getB();
             data[1] = tempLinkCost;
+            
+        
         return data;
                 
     }
     
     private Object[] AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest) throws NoRouteToDestination
     {
-        Object[] data = new Object[2];
-        if(neighbors.isEmpty()) throw new NoRouteToDestination();
+        Object[] data = new Object[3];
+        /*
+        if(startPoint.equals(dest)) 
+        {
+            data[0] = startPoint;
+            data[1] = 0.0;
+            data[2] = null;
+            return data;
+        }
+        */
+        if(neighbors.isEmpty()) throw new NoRouteToDestination(startPoint, dest);
         Link tempLink = neighbors.get(0).getLinks().get(0);
         double linkCost = Double.MAX_VALUE;
         for (Router neighbor : neighbors) {
@@ -165,6 +225,9 @@ public class Dijkstra_Alg {
         }
         data[0] = tempLink.getA();
         data[1] = linkCost;
+        data[2] = tempLink;
+        //this.usedLink.add(tempLink);
+        //tempLink.setCost(Double.POSITIVE_INFINITY);
         return data;
     }
     

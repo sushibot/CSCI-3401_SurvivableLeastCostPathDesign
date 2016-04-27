@@ -1,6 +1,7 @@
 package Router.link;
 
 import Router.Router;
+import java.util.ArrayList;
 import java.util.Random;
 
 /** The link between two routers
@@ -10,6 +11,7 @@ import java.util.Random;
 public class Link implements Comparable {
     private final Router A,B;
     private double cost;
+    private final static ArrayList<Link> ALLLINKS = new ArrayList<Link>();
     /**Link Between two routers
      * 
      * @param A Source Router
@@ -20,6 +22,7 @@ public class Link implements Comparable {
         this.A = A;
         this.B = B;
         this.cost = cost;
+        ALLLINKS.add(this);
     }
     
     /**Link Between two routers, with a cost of 0
@@ -102,5 +105,11 @@ public class Link implements Comparable {
         else return 0;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public static ArrayList<Link> getALLLINKS() {
+        return ALLLINKS;
+    }
+    
+    
  
 }
