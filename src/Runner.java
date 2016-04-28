@@ -32,6 +32,22 @@ public class Runner {
                 //test1.printUsedLinks();
                 //System.out.println(testPath[1]);
                 //routerList[0].getLinkTable().printUsedLinks();
+                double linkCosts[][] = new double[routerList.length][routerList.length];
+                int index = 0;
+                for (int i = 0; i < linkCosts.length; i++) {
+                    for (int j = 0; j < linkCosts[i].length; j++) {
+                        linkCosts[i][j] = Link.getALLLINKS().get(index++).getCost();
+                    }
+                }
+                
+                for (int i = 0; i < linkCosts.length; i++) {
+                    System.out.print("| ");
+                    for (int j = 0; j < linkCosts[i].length; j++) {
+                        System.out.print(linkCosts[i][j]+ " ");
+                    }
+                    System.out.println("|\n");
+                }
+                
                 Dijkstra_Alg.calculateAllRouters();
                 for (Router router : routerList) {
                     System.out.println(router.getName());

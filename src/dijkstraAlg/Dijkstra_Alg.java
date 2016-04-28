@@ -77,9 +77,10 @@ public class Dijkstra_Alg {
             doneList.add(nextHop);
             //boolean neighborIsDestination = false;
             int numOfRuns = 0;
-            while (nextHop != dest && !queue.isEmpty()) {
-                for (int i = 0; i < index; i++) {
-                    if(route[i].getRouterPath().length == 2)
+            
+            //for (int i = 0; i < index; i++) {
+                if(route[0] != null)
+                    if(route[0].getRouterPath().length == 2)
                     {
                         int destRouter = nextHop.getNeighbors().indexOf(dest);
                         for (int j = 0; j < nextHop.getNeighbors().size(); j++) {
@@ -88,13 +89,17 @@ public class Dijkstra_Alg {
                                 nextHop = nextHop.getNeighbors().get(j);
                                 hops.add(nextHop);
                                 hopCost.add(Link.getLinkBetween(router, nextHop).getCost());
+                                doneList.add(nextHop);
                                 break;
                             }
                         }
                         
                         
                     }
-                }
+                //}
+            
+            while (nextHop != dest && !queue.isEmpty()) {
+                
                 ArrayList<Router> neighbors = nextHop.getNeighbors();
                 /*
                 if(neighbors.contains(dest) && nextHop.equals(router) && !destIsNeighbor)
