@@ -36,6 +36,7 @@ public class Dijkstra_Alg {
             throw new Error("Router is null!");
         Path[] route = new Path[2];
         boolean isBroken = false;
+        boolean destIsNeighbor = false;
         /*
         ArrayList<Link> pathLinks = new ArrayList<Link>();
         ArrayList<Double> pathCosts = new ArrayList<Double>();
@@ -74,8 +75,43 @@ public class Dijkstra_Alg {
             hops.add(nextHop);
             hopCost.add(0.0);
             doneList.add(nextHop);
+            //boolean neighborIsDestination = false;
+            int numOfRuns = 0;
             while (nextHop != dest && !queue.isEmpty()) {
+                for (int i = 0; i < index; i++) {
+                    if(route[i].getRouterPath().length == 2)
+                    {
+                        int destRouter = nextHop.getNeighbors().indexOf(dest);
+                        for (int j = 0; j < nextHop.getNeighbors().size(); j++) {
+                            if(destRouter != j) 
+                            {
+                                nextHop = nextHop.getNeighbors().get(j);
+                                hops.add(nextHop);
+                                hopCost.add(Link.getLinkBetween(router, nextHop).getCost());
+                                break;
+                            }
+                        }
+                        
+                        
+                    }
+                }
                 ArrayList<Router> neighbors = nextHop.getNeighbors();
+                /*
+                if(neighbors.contains(dest) && nextHop.equals(router) && !destIsNeighbor)
+                {
+                    //neighborIsDestination = true;
+                    //numOfRuns++;
+                    //neighbors.remove(dest);
+                    destIsNeighbor = true;
+                    hops.add(dest);
+                    hopCost.add(Link.getLinkBetween(router, dest).getCost());
+                    break;
+                     
+                }
+                */
+                
+                
+                
                 for (Router rm : doneList)
                     neighbors.remove(rm);
                 
@@ -111,7 +147,6 @@ public class Dijkstra_Alg {
             
             addUsedLinks(Path.calculateLinksUsed(routerList,route[index++]));
             getUsedLinks();
-        
         }
         /*
         for (Link linker : this.usedLink) {
@@ -137,8 +172,8 @@ public class Dijkstra_Alg {
     }
     
     
-    //See AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest)
     @Deprecated
+    //See AlgIitration(Router startPoint, ArrayList<Router> neighbors, Router dest)
     private Object[] AlgIitration(Router startPoint)
     {
         Object[] data = new Object[2];

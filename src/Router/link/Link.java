@@ -12,6 +12,7 @@ public class Link implements Comparable {
     private final Router A,B;
     private double cost;
     private final static ArrayList<Link> ALLLINKS = new ArrayList<Link>();
+    //private final static ArrayList<Link> CLONEDLINKS = new ArrayList<Link>();
     /**Link Between two routers
      * 
      * @param A Source Router
@@ -23,6 +24,7 @@ public class Link implements Comparable {
         this.B = B;
         this.cost = cost;
         ALLLINKS.add(this);
+        //CLONEDLINKS.add(new Link(A,B,cost));
     }
     
     /**Link Between two routers, with a cost of 0
@@ -110,6 +112,20 @@ public class Link implements Comparable {
         return ALLLINKS;
     }
     
+    /*
+    public static ArrayList<Link> getClonedLinks()
+    {
+        return CLONEDLINKS;
+    }
+    */
     
+    public static Link getLinkBetween(Router a, Router b)
+    {
+        for (Link link : ALLLINKS) {
+            if(link.A.equals(a) && link.B.equals(b))
+                return link;
+        }
+        return null;
+    }
  
 }
