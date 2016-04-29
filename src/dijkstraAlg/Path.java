@@ -3,9 +3,11 @@ package dijkstraAlg;
 import Router.Router;
 import java.util.ArrayList;
 
-/**
+/**Path "Route" from Source to Destination
  *
- * @author tba_m
+ * @author Tyler Atiburcio 
+ * @author Alter Calubana
+ * @author Gabriel Fontanilla
  */
 public class Path {
 
@@ -16,8 +18,8 @@ public class Path {
     
     /**Creates a new Path "Route", which holds the next hops and their link cost
      * 
-     * @param costHop
-     * @param routers 
+     * @param costHop double[]
+     * @param routers Router[]
      */
     public Path(double[] costHop, Router[] routers) {
         this.costHop = costHop;
@@ -25,7 +27,11 @@ public class Path {
         this.SOURCE = this.routers[0];
         this.DESTINATION = this.routers[this.routers.length-1];
     }
-    
+    /**Creates a new Path "Route", which holds the next hops and their link cost
+     * 
+     * @param costHop ArrayList<Double>
+     * @param path ArrayList<Router>
+     */
     public Path(ArrayList<Double> costHop, ArrayList<Router> path)
     {
         this.costHop = new double[costHop.size()];
@@ -76,7 +82,12 @@ public class Path {
     
     
     
-    
+    /**Calculate which links are used throughout each Router
+     * 
+     * @param routerList
+     * @param path
+     * @return int[][] Links used in the 2 paths
+     */
     public static int[][] calculateLinksUsed(ArrayList<Router> routerList, Path path)
     {
         int[][] usedLinks = new int[routerList.size()][routerList.size()];
@@ -96,11 +107,18 @@ public class Path {
         
         return usedLinks;
     }
-
+    /**Return the source router
+     * 
+     * @return RouterSource
+     */
     public Router getSOURCE() {
         return SOURCE;
     }
-
+    
+    /**Return the destination router
+     * 
+     * @return RouterDestination
+     */
     public Router getDESTINATION() {
         return DESTINATION;
     }

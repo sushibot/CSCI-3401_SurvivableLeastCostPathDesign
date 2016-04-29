@@ -2,9 +2,11 @@ package dijkstraAlg;
 
 import Router.Router;
 
-/**
+/**Route to destination Error, if not route is possible to destination
  *
- * @author tba_m
+ * @author Tyler Atiburcio 
+ * @author Alter Calubana
+ * @author Gabriel Fontanilla
  */
 public class NoRouteToDestination extends Error {
     
@@ -14,7 +16,7 @@ public class NoRouteToDestination extends Error {
         super("No Route To Destination! Rerouting!");
         COUNT++;
     }
-
+    
     NoRouteToDestination(Router startPoint, Router dest) {
         super("No Route to " + startPoint.getName() +"<->"+ dest.getName() + "! Rerouting!");
         COUNT++;

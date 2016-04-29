@@ -3,13 +3,13 @@ import DataImport.DataInput;
 import Router.Router;
 import Router.link.Link;
 import dijkstraAlg.Dijkstra_Alg;
-import dijkstraAlg.NoRouteToDestination;
 import dijkstraAlg.Path;
-import java.util.ArrayList;
 
 /**
  *
- * @author Tyler_Atiburcio
+ * @author Tyler Atiburcio 
+ * @author Alter Calubana
+ * @author Gabriel Fontanilla
  */
 public class Runner {
     
@@ -63,11 +63,12 @@ public class Runner {
                 //System.out.println(testPath[0]);
                 //test1.printUsedLinks();
                 //System.out.println(testPath[1]);
-                routerList[0].getLinkTable().printUsedLinks();
+                //routerList[0].getLinkTable().printUsedLinks();
                 
                 System.out.println("\n\n\nTimeTook(ms): "+( System.currentTimeMillis()-startTime));
-                System.out.println("Amount of broken routes: " + NoRouteToDestination.COUNT);
+                //System.out.println("Amount of broken routes: " + NoRouteToDestination.COUNT);
             }
+            else throw new Error("Invalid file Type!");
         }catch(Error e){
             System.err.println(e.toString());
         }

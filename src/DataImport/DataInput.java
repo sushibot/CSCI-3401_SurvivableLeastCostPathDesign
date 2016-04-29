@@ -9,7 +9,9 @@ import java.util.Scanner;
 /**Reads CSV file and reads in following format ROUTER_NAME,LINK_COST[n,'/' no link, ? (random link cost)],...
  *Each line must be the same length (same amount of elements per line)
  * 
- * @author Tyler_Atiburcio
+ * @author Tyler Atiburcio 
+ * @author Alter Calubana
+ * @author Gabriel Fontanilla
  */
 public class DataInput {
 
@@ -46,6 +48,7 @@ public class DataInput {
 
         }
         
+        //Copy ArrayList of Routers to Router[]
         Router[] data = new  Router[routers.size()];
         for (int i = 0; i < data.length; i++) {
             data[i] = routers.get(i);

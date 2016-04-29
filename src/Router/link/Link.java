@@ -6,7 +6,9 @@ import java.util.Random;
 
 /** The link between two routers
  *
- * @author Tyler_Atiburcio
+ * @author Tyler Atiburcio 
+ * @author Alter Calubana
+ * @author Gabriel Fontanilla
  */
 public class Link implements Comparable {
     private final Router A,B;
@@ -96,7 +98,12 @@ public class Link implements Comparable {
         Random random = new Random();
         return random.nextInt(bound) +1;
     }
-
+    
+    /**Compare the cost between the given links
+     * 
+     * @param o Link
+     * @return -1 if calling Links is smaller, 0 if equal, 1 if passed link is smaller
+     */
     @Override
     public int compareTo(Object o) {
         Link lk = (Link)o;
@@ -107,18 +114,20 @@ public class Link implements Comparable {
         else return 0;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**Return all links created
+     * 
+     * @return ArrayList<Link> 
+     */
     public static ArrayList<Link> getALLLINKS() {
         return ALLLINKS;
     }
     
-    /*
-    public static ArrayList<Link> getClonedLinks()
-    {
-        return CLONEDLINKS;
-    }
-    */
-    
+    /**Gets the Link associated with Router A and Router B
+     * 
+     * @param a RouterA
+     * @param b RouterB
+     * @return Link assoicated with Router A and B
+     */
     public static Link getLinkBetween(Router a, Router b)
     {
         for (Link link : ALLLINKS) {

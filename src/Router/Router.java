@@ -4,9 +4,11 @@ import Router.link.Link;
 import dijkstraAlg.Dijkstra_Alg;
 import java.util.ArrayList;
 
-/**
+/**Router
  *
- * @author Tyler_Atiburcio
+ * @author Tyler Atiburcio 
+ * @author Alter Calubana
+ * @author Gabriel Fontanilla
  */
 public class Router {
     
@@ -14,6 +16,7 @@ public class Router {
     protected String name;
     protected Dijkstra_Alg linkTable;
     private final int ID;
+    
     /**Creates a new router with the given name
      * 
      * @param name Name of Router
@@ -49,6 +52,10 @@ public class Router {
         return links;
     }
     
+    /**Gets all neighbors of router
+     * 
+     * @return ArrayList<Router> neighbors
+     */
     public ArrayList<Router> getNeighbors()
     {
         ArrayList<Router> neighbors = new ArrayList<Router>();
@@ -57,20 +64,23 @@ public class Router {
                  neighbors.add(link.getB());
         return neighbors;
     }
-
+    
+    /**The linkTable associated with the router
+     * 
+     * @return Dijkstra_Alg
+     */
     public Dijkstra_Alg getLinkTable() {
         return linkTable;
     }
     
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        return hash;
-    }
-
+    /**Compare if routers are equal; By comparing their ID's
+     * 
+     * @param obj Router
+     * @return true, If they are the same. False, if they are not the same
+     */
     @Override
     public boolean equals(Object obj) {
+        if(!(obj instanceof Router)) return false;
         Router r = (Router) obj;
         return this.ID == r.ID;
     }
@@ -80,7 +90,7 @@ public class Router {
     public String toString() {
         return "{"+ name + " links=" + links + '}';
     }
-
+    
     public void setLinks(ArrayList<Link> links) {
         this.links = links;
     }
