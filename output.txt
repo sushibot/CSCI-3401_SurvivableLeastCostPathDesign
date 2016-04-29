@@ -1,0 +1,334 @@
+Router A
+Router A<->Router A
+[Router A, ]
+[0.0, ]
+
+Router A<->Router A
+[Router A, ]
+[0.0, ]
+
+Router A<->Router B
+[Router A, Router C, Router E, Router F, Router D, Router B, ]
+[0.0, 14.0, 42.0, 7.0, 69.0, 40.0, ]
+
+Router A<->Router B
+[Router A, Router B, ]
+[0.0, 45.0, ]
+
+Router A<->Router C
+[Router A, Router C, ]
+[0.0, 14.0, ]
+
+Router A<->Router C
+[Router A, Router C, ]
+[0.0, 14.0, ]
+
+Router A<->Router D
+[Router A, Router C, Router E, Router F, Router D, ]
+[0.0, 14.0, 42.0, 7.0, 69.0, ]
+
+Router A<->Router D
+[Router A, Router B, Router D, ]
+[0.0, 45.0, 90.0, ]
+
+Router A<->Router E
+[Router A, Router C, Router E, ]
+[0.0, 14.0, 42.0, ]
+
+Router A<->Router E
+[Router A, Router B, Router D, Router F, Router E, ]
+[0.0, 45.0, 90.0, 48.0, 8.0, ]
+
+Router A<->Router F
+[Router A, Router C, Router E, Router F, ]
+[0.0, 14.0, 42.0, 7.0, ]
+
+Router A<->Router F
+[Router A, Router B, Router D, Router F, ]
+[0.0, 45.0, 90.0, 48.0, ]
+
+
+
+
+
+Router B
+Router B<->Router A
+[Router B, Router A, ]
+[0.0, 32.0, ]
+
+Router B<->Router A
+[Router B, Router A, ]
+[0.0, 32.0, ]
+
+Router B<->Router B
+[Router B, ]
+[0.0, ]
+
+Router B<->Router B
+[Router B, ]
+[0.0, ]
+
+Router B<->Router C
+[Router B, Router A, Router C, ]
+[0.0, 32.0, 14.0, ]
+
+Router B<->Router C
+[Router B, Router D, Router F, Router E, Router C, ]
+[0.0, 90.0, 48.0, 8.0, 87.0, ]
+
+Router B<->Router D
+[Router B, Router D, ]
+[0.0, 90.0, ]
+
+Router B<->Router D
+[Router B, Router D, ]
+[0.0, 90.0, ]
+
+Router B<->Router E
+[Router B, Router A, Router C, Router E, ]
+[0.0, 32.0, 14.0, 42.0, ]
+
+Router B<->Router E
+[Router B, Router D, Router F, Router E, ]
+[0.0, 90.0, 48.0, 8.0, ]
+
+Router B<->Router F
+[Router B, Router A, Router C, Router E, Router F, ]
+[0.0, 32.0, 14.0, 42.0, 7.0, ]
+
+Router B<->Router F
+[Router B, Router D, Router F, ]
+[0.0, 90.0, 48.0, ]
+
+
+
+
+
+Router C
+Router C<->Router A
+[Router C, Router E, Router F, Router D, Router B, Router A, ]
+[0.0, 42.0, 7.0, 69.0, 40.0, 32.0, ]
+
+Router C<->Router A
+[Router C, Router A, ]
+[0.0, 74.0, ]
+
+Router C<->Router B
+[Router C, Router E, Router F, Router D, Router B, ]
+[0.0, 42.0, 7.0, 69.0, 40.0, ]
+
+Router C<->Router B
+[Router C, Router A, Router B, ]
+[0.0, 74.0, 45.0, ]
+
+Router C<->Router C
+[Router C, ]
+[0.0, ]
+
+Router C<->Router C
+[Router C, ]
+[0.0, ]
+
+Router C<->Router D
+[Router C, Router E, Router F, Router D, ]
+[0.0, 42.0, 7.0, 69.0, ]
+
+Router C<->Router D
+[Router C, Router D, ]
+[0.0, 85.0, ]
+
+Router C<->Router E
+[Router C, Router E, ]
+[0.0, 42.0, ]
+
+Router C<->Router E
+[Router C, Router E, ]
+[0.0, 42.0, ]
+
+Router C<->Router F
+[Router C, Router E, Router F, ]
+[0.0, 42.0, 7.0, ]
+
+Router C<->Router F
+[Router C, Router A, Router B, Router D, Router F, ]
+[0.0, 74.0, 45.0, 90.0, 48.0, ]
+
+
+
+
+
+Router D
+Router D<->Router A
+[Router D, Router B, Router A, ]
+[0.0, 40.0, 32.0, ]
+
+Router D<->Router A
+[Router D, Router F, Router E, Router C, Router A, ]
+[0.0, 48.0, 8.0, 87.0, 74.0, ]
+
+Router D<->Router B
+[Router D, Router B, ]
+[0.0, 40.0, ]
+
+Router D<->Router B
+[Router D, Router B, ]
+[0.0, 40.0, ]
+
+Router D<->Router C
+[Router D, Router F, Router E, Router C, ]
+[0.0, 48.0, 8.0, 87.0, ]
+
+Router D<->Router C
+[Router D, Router C, ]
+[0.0, 80.0, ]
+
+Router D<->Router D
+[Router D, ]
+[0.0, ]
+
+Router D<->Router D
+[Router D, ]
+[0.0, ]
+
+Router D<->Router E
+[Router D, Router B, Router A, Router C, Router E, ]
+[0.0, 40.0, 32.0, 14.0, 42.0, ]
+
+Router D<->Router E
+[Router D, Router F, Router E, ]
+[0.0, 48.0, 8.0, ]
+
+Router D<->Router F
+[Router D, Router F, ]
+[0.0, 48.0, ]
+
+Router D<->Router F
+[Router D, Router F, ]
+[0.0, 48.0, ]
+
+
+
+
+
+Router E
+Router E<->Router A
+[Router E, Router F, Router D, Router B, Router A, ]
+[0.0, 7.0, 69.0, 40.0, 32.0, ]
+
+Router E<->Router A
+[Router E, Router C, Router A, ]
+[0.0, 87.0, 74.0, ]
+
+Router E<->Router B
+[Router E, Router F, Router D, Router B, ]
+[0.0, 7.0, 69.0, 40.0, ]
+
+Router E<->Router B
+[Router E, Router C, Router A, Router B, ]
+[0.0, 87.0, 74.0, 45.0, ]
+
+Router E<->Router C
+[Router E, Router F, Router D, Router C, ]
+[0.0, 7.0, 69.0, 80.0, ]
+
+Router E<->Router C
+[Router E, Router C, ]
+[0.0, 87.0, ]
+
+Router E<->Router D
+[Router E, Router F, Router D, ]
+[0.0, 7.0, 69.0, ]
+
+Router E<->Router D
+[Router E, Router C, Router D, ]
+[0.0, 87.0, 85.0, ]
+
+Router E<->Router E
+[Router E, ]
+[0.0, ]
+
+Router E<->Router E
+[Router E, ]
+[0.0, ]
+
+Router E<->Router F
+[Router E, Router F, ]
+[0.0, 7.0, ]
+
+Router E<->Router F
+[Router E, Router F, ]
+[0.0, 7.0, ]
+
+
+
+
+
+Router F
+Router F<->Router A
+[Router F, Router E, Router C, Router A, ]
+[0.0, 8.0, 87.0, 74.0, ]
+
+Router F<->Router A
+[Router F, Router D, Router B, Router A, ]
+[0.0, 69.0, 40.0, 32.0, ]
+
+Router F<->Router B
+[Router F, Router E, Router C, Router A, Router B, ]
+[0.0, 8.0, 87.0, 74.0, 45.0, ]
+
+Router F<->Router B
+[Router F, Router D, Router B, ]
+[0.0, 69.0, 40.0, ]
+
+Router F<->Router C
+[Router F, Router E, Router C, ]
+[0.0, 8.0, 87.0, ]
+
+Router F<->Router C
+[Router F, Router D, Router C, ]
+[0.0, 69.0, 80.0, ]
+
+Router F<->Router D
+[Router F, Router E, Router C, Router D, ]
+[0.0, 8.0, 87.0, 85.0, ]
+
+Router F<->Router D
+[Router F, Router D, ]
+[0.0, 69.0, ]
+
+Router F<->Router E
+[Router F, Router E, ]
+[0.0, 8.0, ]
+
+Router F<->Router E
+[Router F, Router E, ]
+[0.0, 8.0, ]
+
+Router F<->Router F
+[Router F, ]
+[0.0, ]
+
+Router F<->Router F
+[Router F, ]
+[0.0, ]
+
+
+
+
+
+{ 0  4  6  0  0  0 }
+{ 0  0  0  3  0  0 }
+{ 0  0  0  0  4  0 }
+{ 0  1  0  0  0  2 }
+{ 0  0  0  0  0  3 }
+{ 0  0  0  2  1  0 }
+
+
+
+TimeTook(ms): 38
+
+
+Usage:
+Input: CSV file containing routers and their links
+CSCI-3401_SurvivableLeastCostDesignPathDesign.jar (fileName)
+

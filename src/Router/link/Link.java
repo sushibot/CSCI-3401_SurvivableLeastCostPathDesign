@@ -1,6 +1,7 @@
 package Router.link;
 
 import Router.Router;
+import java.util.ArrayList;
 import java.util.Random;
 
 /** The link between two routers
@@ -10,6 +11,8 @@ import java.util.Random;
 public class Link implements Comparable {
     private final Router A,B;
     private double cost;
+    private final static ArrayList<Link> ALLLINKS = new ArrayList<Link>();
+    //private final static ArrayList<Link> CLONEDLINKS = new ArrayList<Link>();
     /**Link Between two routers
      * 
      * @param A Source Router
@@ -20,6 +23,8 @@ public class Link implements Comparable {
         this.A = A;
         this.B = B;
         this.cost = cost;
+        ALLLINKS.add(this);
+        //CLONEDLINKS.add(new Link(A,B,cost));
     }
     
     /**Link Between two routers, with a cost of 0
@@ -71,14 +76,14 @@ public class Link implements Comparable {
         return "Link{" + A.getName() + "<->" + B.getName() + ": " + cost + '}';
     }
     
-    /**Returns a randomly generated cost from 1-100, including no link (NaN)
+    /**Returns a randomly generated cost from 1-100
      * 
      * @return double; Generated Cost
      */
     public static double generateCost()
     {
         Random random = new Random();
-        return random.nextBoolean() ? Double.NaN:(random.nextInt(100) +1);
+        return (random.nextInt(100) +1);
     }
     
     /**Returns a randomly generated cost given the bound
@@ -101,6 +106,26 @@ public class Link implements Comparable {
             return 1;
         else return 0;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static ArrayList<Link> getALLLINKS() {
+        return ALLLINKS;
+    }
+    
+    /*
+    public static ArrayList<Link> getClonedLinks()
+    {
+        return CLONEDLINKS;
+    }
+    */
+    
+    public static Link getLinkBetween(Router a, Router b)
+    {
+        for (Link link : ALLLINKS) {
+            if(link.A.equals(a) && link.B.equals(b))
+                return link;
+        }
+        return null;
     }
  
 }
