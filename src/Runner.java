@@ -4,6 +4,7 @@ import Router.Router;
 import Router.link.Link;
 import dijkstraAlg.Dijkstra_Alg;
 import dijkstraAlg.Path;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -12,26 +13,29 @@ import dijkstraAlg.Path;
  * @author Gabriel Fontanilla
  */
 public class Runner {
+    static String fileName = "";
     
     public static void main(String[] args) throws Exception {
         try{
-            if(args[0].toUpperCase().endsWith(".CSV"))
+            if(args.length == 0)
             {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.showOpenDialog(null);
+                if(!fileChooser.getSelectedFile().isFile()) throw new Error("Invalid file Type!");
+                fileName = fileChooser.getSelectedFile().getPath().toUpperCase();
+            }
+            if(!fileName.isEmpty())
+            {
+                if(args.length != 0)
+                {
+                    if(!args[0].toUpperCase().endsWith(".CSV")) throw new Error("Invalid file Type!");
+                    fileName = args[0].toUpperCase();
+                }
+                    
+                
                 long startTime = System.currentTimeMillis();
-                //System.out.println(Double.POSITIVE_INFINITY);
-                Router[] routerList = DataInput.read(args[0]);
-                //System.out.println(routerList[0].getLinks());
-                //System.out.println(routerList[0].getLinks());
+                Router[] routerList = DataInput.read(fileName);
 
-                //System.out.println("src " + routerList[0].getName());
-                //System.out.println("dest " + routerList[routerList.length-1].getName());
-                //Dijkstra_Alg test1 = new Dijkstra_Alg(routerList[0],routerList);
-                //Path[] testPath = test1.runAlg(routerList[routerList.length-1]);
-                //Path[] testPath = routerList[0].getLinkTable().runAlg(routerList[routerList.length-1]);
-                //System.out.println(testPath[0]);
-                //test1.printUsedLinks();
-                //System.out.println(testPath[1]);
-                //routerList[0].getLinkTable().printUsedLinks();
                 double linkCosts[][] = new double[routerList.length][routerList.length];
                 int index = 0;
                 for (int i = 0; i < linkCosts.length; i++) {
@@ -51,22 +55,14 @@ public class Runner {
                 Dijkstra_Alg.calculateAllRouters();
                 for (Router router : routerList) {
                     System.out.println(router.getName());
-                    //System.out.println(router.getLinkTable().getPaths());
                     for (Path paths : router.getLinkTable().getPaths()) {
                         System.out.println(paths);
                         System.out.println("");
                     }
                     System.out.println("\n\n\n");
                 }
-
-                //Path[] testPath = routerList[0].getLinkTable().runAlg(routerList[routerList.length-1]);
-                //System.out.println(testPath[0]);
-                //test1.printUsedLinks();
-                //System.out.println(testPath[1]);
-                //routerList[0].getLinkTable().printUsedLinks();
                 
                 System.out.println("\n\n\nTimeTook(ms): "+( System.currentTimeMillis()-startTime));
-                //System.out.println("Amount of broken routes: " + NoRouteToDestination.COUNT);
             }
             else throw new Error("Invalid file Type!");
         }catch(Error e){

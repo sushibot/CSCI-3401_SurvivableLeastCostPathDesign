@@ -1,6 +1,0 @@
-Router A,0,3,6,/,/,/
-Router B,3,0,/,5,/,/
-Router C,6,/,0,2,1,/
-Router D,/,5,2,0,/,4
-Router E,/,/,1,/,0,7
-Router F,/,/,/,4,7,0
