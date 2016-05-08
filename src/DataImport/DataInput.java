@@ -38,7 +38,7 @@ public class DataInput {
                 else if(routerData[j].matches("/[0-9]+"))
                     cost = Link.generateCost(Integer.parseInt(routerData[j].split("?")[1]));
                 else if(routerData[j].equals("?"))
-                    cost = Link.generateCost();
+                    cost = Link.generateCost(1000);
                 else if(routerData[j].matches("[0-9]+"))
                     cost = Integer.parseInt(routerData[j]);
                 else 
